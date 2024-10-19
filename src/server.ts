@@ -5,6 +5,7 @@ import cors, { CorsOptions } from "cors";
 import { rateLimiter } from "./utils/rateLimiter";
 import helmet from "helmet";
 import homeRouter from "./routes/home.route";
+import connectDB from "./utils/db";
 
 // lOADING THE .ENV FILE
 dotenv.config();
@@ -17,6 +18,9 @@ const corsConfiguration: CorsOptions = {
     origin: process.env.Frontend_Domain,
     methods: ["GET", "POST", "PUT", "DELETE"],
 }
+
+//CONNECTING TO MONGO_DB
+connectDB();
 
 // MIDDLEWARES
 app.use(cors(corsConfiguration));
